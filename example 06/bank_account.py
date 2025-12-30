@@ -1,5 +1,5 @@
-# כעת נוסיף קלאס יורש נוסף
-# שימו לב כי הוא אינו דורש שם בעל החשבון אלא מקבע אותו
+# override method כעת נוסיף
+# שימו לב כי בחשבון VIP ניתן לרדת לאוברדראפט
 class BankAccount:
     def __init__(self, id: str, f_name: str, l_name: str):
         self.account_id: str = id
@@ -32,24 +32,27 @@ class VIPBankAccount(BankAccount):
             print("ERROR: Amount must be positive")
 
 
-class BusinessBankAccount(BankAccount):
-
-    def __init__(self, account_id, company_name: str):
-        super().__init__(id=account_id
-                         , f_name='Business do not need f/l name'
-                         , l_name='Business do not need f/l name')
-        self.company_name = company_name
-
-
 bank_account1 = BankAccount('1245', 'Moshe', 'Cohen')
-business_bank_account2 = BusinessBankAccount('1000', 'Tesla')
+vip_bank_account2 = VIPBankAccount('8982', 'David', 'Lev')
 
 print("**** bank_account1")
 print( bank_account1 )
-print( bank_account1.__dict__ )
+print( 'Beginning: ', bank_account1.balance )
 
-## Now Business account
+bank_account1.deposit(100)
+print( 'After deposit 100: ', bank_account1.balance )
+
+bank_account1.withdraw(200)
+print( 'After withdraw 200. Expecting ERROR and no change in balance: ', bank_account1.balance )
+
+## Now VIP account
 print()
-print("**** business_bank_account2")
-print( business_bank_account2 )
-print( 'Pay attention to first and last name: ', business_bank_account2.__dict__ )
+print("**** vip_bank_account2")
+print( vip_bank_account2 )
+print( 'Beginning: ', vip_bank_account2.balance )
+
+vip_bank_account2.deposit(100)
+print( 'After deposit 100:', vip_bank_account2.balance )
+
+vip_bank_account2.withdraw(200)
+print( 'After withdraw 200. No error for VIP:', vip_bank_account2.balance )

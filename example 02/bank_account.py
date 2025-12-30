@@ -1,14 +1,16 @@
-# המופע יווצר כעת עם פרמטרים כפי שאנחנו נחליט
+# הוספנו properties אל ה-class
+# שים לב שלמרות שאלו שני מופעים שונים (בהרצה תראה כתובות זהות)
+# ערכי הproperties שלהם זהים
 
 class BankAccount:
-    def __init__(self, id, f_name, l_name):
-        self.account_id: str = id
-        self.first_name: str = f_name
-        self.last_name: str = l_name
+    def __init__(self):
+        self.account_id: str = 'An example initial Id'
+        self.first_name: str = 'Moshe'
+        self.last_name: str = 'Cohen'
         self.balance: float = 0.0
 
-bank_account1 = BankAccount('1245', 'Moshe', 'Cohen')
-bank_account2 = BankAccount('8982', 'David', 'Lev')
+bank_account1 = BankAccount()
+bank_account2 = BankAccount()
 
 print("**** bank_account1")
 print( bank_account1 )

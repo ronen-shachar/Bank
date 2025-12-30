@@ -1,5 +1,5 @@
-# override method כעת נוסיף
-# שימו לב כי בחשבון VIP ניתן לרדת לאוברדראפט
+# כעת נוסיף methods
+# נוסיף בדיקה כי חשבון לא יורד למינוס וכי מפקידים מומשכים סכומים חיוביים
 class BankAccount:
     def __init__(self, id: str, f_name: str, l_name: str):
         self.account_id: str = id
@@ -23,36 +23,21 @@ class BankAccount:
             print("ERROR: Cant withdraw negative amount.")
 
 
-class VIPBankAccount(BankAccount):
-
-    def withdraw(self, amount: float):
-        if amount > 0:
-            self.balance -= amount
-        else:
-            print("ERROR: Amount must be positive")
-
-
 bank_account1 = BankAccount('1245', 'Moshe', 'Cohen')
-vip_bank_account2 = VIPBankAccount('8982', 'David', 'Lev')
+bank_account2 = BankAccount('8982', 'David', 'Lev')
 
 print("**** bank_account1")
 print( bank_account1 )
-print( 'Beginning: ', bank_account1.balance )
+print( 'Beginning', bank_account1.__dict__ )
 
 bank_account1.deposit(100)
-print( 'After deposit 100: ', bank_account1.balance )
+print( 'After deposit 100', bank_account1.__dict__ )
 
-bank_account1.withdraw(200)
-print( 'After withdraw 200. Expecting ERROR and no change in balance: ', bank_account1.balance )
+bank_account1.deposit(11)
+print( 'After deposit 11', bank_account1.__dict__ )
 
-## Now VIP account
-print()
-print("**** vip_bank_account2")
-print( vip_bank_account2 )
-print( 'Beginning: ', vip_bank_account2.balance )
+bank_account1.withdraw(100)
+print( 'After withdraw 100', bank_account1.__dict__ )
 
-vip_bank_account2.deposit(100)
-print( 'After deposit 100:', vip_bank_account2.balance )
-
-vip_bank_account2.withdraw(200)
-print( 'After withdraw 200. No error for VIP:', vip_bank_account2.balance )
+bank_account1.withdraw(100)
+print( 'After withdraw 100. Expecting ERROR and no change in balance', bank_account1.__dict__ )
